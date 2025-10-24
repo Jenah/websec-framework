@@ -1,32 +1,32 @@
 {
   "SchemaVersion": 2,
-  "CreatedAt": "2025-10-24T21:01:44.352603+01:00",
+  "CreatedAt": "2025-10-24T21:37:10.24796+01:00",
   "ArtifactName": "websec-app:latest",
   "ArtifactType": "container_image",
   "Metadata": {
-    "Size": 154415616,
+    "Size": 155066368,
     "OS": {
       "Family": "debian",
       "Name": "13.1"
     },
-    "ImageID": "sha256:838c4ab36d6895eb8d07c75c0a92d92bfa25edfab98b1f059ba0ecb5309a0a61",
+    "ImageID": "sha256:be342a68bb8981d8bdda7bc74ddf67e60d03da0fff8e5798a062f6432e5bd744",
     "DiffIDs": [
       "sha256:27d9a8093fcd2e7fb4043c9dffa1f6b3d2a022f490d5c3d04448152d8cdc2603",
       "sha256:89c44d29c36b69bcdaef8dd48ecbac0a9d8cac38307ecbc23c95fa5d58e364b5",
       "sha256:9334cedff34edc0668c9aa5d84ea42c6924cf7556e226712d345996fdb45cfad",
       "sha256:0a21b3181ae34577114f91756031242394b9c30a4a51347c164764012ff734a4",
       "sha256:a5206540dc7dcbc36132fda71f5c93323c885eb82906e93d1a9f74f63fa67494",
-      "sha256:7a7f80c2f5c0dcb81dece6d4c747740ff9c460c516d009057606daf40b8c02ca"
+      "sha256:7b2b61556f54b05d5556a13a0bf7f24e3b92861545983bcf56576ebc94521baa"
     ],
     "RepoTags": [
       "websec-app:latest"
     ],
     "RepoDigests": [
-      "websec-app@sha256:838c4ab36d6895eb8d07c75c0a92d92bfa25edfab98b1f059ba0ecb5309a0a61"
+      "websec-app@sha256:be342a68bb8981d8bdda7bc74ddf67e60d03da0fff8e5798a062f6432e5bd744"
     ],
     "ImageConfig": {
       "architecture": "arm64",
-      "created": "2025-10-24T20:00:10.091996251Z",
+      "created": "2025-10-24T20:36:43.875508167Z",
       "history": [
         {
           "created": "2025-10-09T21:44:07Z",
@@ -90,36 +90,36 @@
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2025-10-24T20:00:10Z",
+          "created": "2025-10-24T20:36:43Z",
           "created_by": "COPY . /app # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2025-10-24T20:00:10Z",
+          "created": "2025-10-24T20:36:43Z",
           "created_by": "EXPOSE [8081/tcp]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2025-10-24T20:00:10Z",
+          "created": "2025-10-24T20:36:43Z",
           "created_by": "ENV HOST=0.0.0.0",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2025-10-24T20:00:10Z",
+          "created": "2025-10-24T20:36:43Z",
           "created_by": "ENV PORT=8085",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2025-10-24T20:00:10Z",
+          "created": "2025-10-24T20:36:43Z",
           "created_by": "ENV WEBROOT=/app",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2025-10-24T20:00:10Z",
+          "created": "2025-10-24T20:36:43Z",
           "created_by": "CMD [\"python3\" \"server.py\"]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
@@ -134,7 +134,7 @@
           "sha256:9334cedff34edc0668c9aa5d84ea42c6924cf7556e226712d345996fdb45cfad",
           "sha256:0a21b3181ae34577114f91756031242394b9c30a4a51347c164764012ff734a4",
           "sha256:a5206540dc7dcbc36132fda71f5c93323c885eb82906e93d1a9f74f63fa67494",
-          "sha256:7a7f80c2f5c0dcb81dece6d4c747740ff9c460c516d009057606daf40b8c02ca"
+          "sha256:7b2b61556f54b05d5556a13a0bf7f24e3b92861545983bcf56576ebc94521baa"
         ]
       },
       "config": {
@@ -186,9 +186,9 @@
         "DiffID": "sha256:a5206540dc7dcbc36132fda71f5c93323c885eb82906e93d1a9f74f63fa67494"
       },
       {
-        "Size": 7680,
-        "Digest": "sha256:59a75e444977a01fe56ff8c6efe75ea7f1f37fde57883685321c1ae25348cc16",
-        "DiffID": "sha256:7a7f80c2f5c0dcb81dece6d4c747740ff9c460c516d009057606daf40b8c02ca"
+        "Size": 658432,
+        "Digest": "sha256:b3eb9d4b1accc793fc879617095b53cfb91ff3ee1eff8abee9139058bad2fa5e",
+        "DiffID": "sha256:7b2b61556f54b05d5556a13a0bf7f24e3b92861545983bcf56576ebc94521baa"
       }
     ]
   },
