@@ -49,6 +49,7 @@ jobs:
           chmod 777 zap_reports
           docker run --rm \
             -v "${{ github.workspace }}/zap_reports:/zap/wrk:rw" \
+            --user $(id -u):$(id -g) \
             ghcr.io/zaproxy/zaproxy:stable \
             zap-full-scan.py \
             -t http://host.docker.internal:8081 \
