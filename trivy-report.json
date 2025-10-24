@@ -1,6 +1,6 @@
 {
   "SchemaVersion": 2,
-  "CreatedAt": "2025-10-24T21:37:10.24796+01:00",
+  "CreatedAt": "2025-10-24T21:54:10.368094+01:00",
   "ArtifactName": "websec-app:latest",
   "ArtifactType": "container_image",
   "Metadata": {
