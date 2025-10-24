@@ -43,17 +43,18 @@ jobs:
           trivy image --format json --output trivy-report.json --severity HIGH,CRITICAL websec-app:latest || true
 
       # 7️⃣ Run OWASP ZAP full scan
-      - name: OWASP ZAP Full Scan
+      - name: Run OWASP ZAP Full Scan
         run: |
           mkdir -p zap_reports
-          chmod 777 zap_reports
           docker run --rm \
-            -v "${{ github.workspace }}/zap_reports:/zap/wrk:rw" \
-            --user $(id -u):$(id -g) \
-            ghcr.io/zaproxy/zaproxy:stable \
-            zap-full-scan.py \
-            -t http://host.docker.internal:8081 \
-            -r zap_report.html
+          -v "${{ github.workspace }}/zap_reports:/zap/wrk:rw" \
+          ghcr.io/zaproxy/zaproxy:stable \
+          zap-full-scan.py \
+          -t ${{ secrets.ZAP_TARGET_URL }} \
+          -r zap_report.html \
+          -z "-config api.disablekey=true" \
+          -d
+
 
       # 8️⃣ Upload scan artifacts
       - name: Upload scan artifacts
