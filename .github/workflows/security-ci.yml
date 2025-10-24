@@ -52,17 +52,18 @@ jobs:
       # 7️⃣ Run OWASP ZAP full scan
       - name: Run OWASP ZAP Full Scan
         run: |
-           docker run --rm \
-           -v "${PWD}/zap_reports:/zap/wrk:rw" \
-           ghcr.io/zaproxy/zaproxy:stable \
-           zap-full-scan.py \
-           -t https://example.com \
-           -r zap_report.html \   # HTML report
-           -J zap_report.json \   # JSON report
-           -x zap_report.xml \    # XML report
-           -l FAIL \              # Fail only on FAIL alerts
-           -z "-config api.disablekey=true" \
-           -d || true
+          docker run --rm -u 0:0 \
+          -v "${PWD}/zap_reports:/zap/wrk:rw" \
+          ghcr.io/zaproxy/zaproxy:stable \
+          zap-full-scan.py \
+          -t https://example.com \
+          -r zap_report.html \
+          -J zap_report.json \   # JSON report
+          -x zap_report.xml \
+          -l WARN \
+          -z "-config api.disablekey=true" \
+          -d || true
+
 
 
 
