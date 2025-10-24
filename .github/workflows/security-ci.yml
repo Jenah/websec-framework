@@ -57,9 +57,7 @@ jobs:
           ghcr.io/zaproxy/zaproxy:stable \
           zap-full-scan.py \
           -t https://example.com \
-          -r zap_report.html \
-          -J zap_report.json \   # JSON report
-          -x zap_report.xml \
+          -r /zap/wrk/zap_report.html \
           -l WARN \
           -z "-config api.disablekey=true" \
           -d || true
