@@ -51,9 +51,10 @@ jobs:
           ghcr.io/zaproxy/zaproxy:stable \
           zap-full-scan.py \
           -t https://example.com \
-          -r zap_report.html -l FAIL \
+          -r /zap/wrk/zap_report.html -l FAIL \
           -z "-config api.disablekey=true" \
           -d
+
 
 
       # 8️⃣ Upload scan artifacts
