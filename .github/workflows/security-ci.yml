@@ -42,6 +42,13 @@ jobs:
         run: |
           trivy image --format json --output trivy-report.json --severity HIGH,CRITICAL websec-app:latest || true
 
+
+      - name: Prepare ZAP reports directory
+        run: |
+          mkdir -p zap_reports
+          chmod 777 zap_reports   # make it fully writable for the container
+
+
       # 7️⃣ Run OWASP ZAP full scan
       - name: Run OWASP ZAP Full Scan
         run: |
