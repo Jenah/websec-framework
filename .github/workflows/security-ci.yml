@@ -52,8 +52,7 @@ jobs:
       # 7️⃣ Run OWASP ZAP full scan
       - name: Run OWASP ZAP Full Scan
         run: |
-          mkdir -p zap_reports
-          docker run --rm \
+          docker run --rm -u 0:0  \
           -v "${PWD}/zap_reports:/zap/wrk:rw" \
           ghcr.io/zaproxy/zaproxy:stable \
           zap-full-scan.py \
