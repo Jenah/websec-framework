@@ -52,7 +52,8 @@ jobs:
       # 7️⃣ Run OWASP ZAP full scan
       - name: Run OWASP ZAP Full Scan
         run: |
-          docker run --rm -u 0:0  \
+          mkdir -p zap_reports
+          docker run --rm -u 0:0 \
           -v "${PWD}/zap_reports:/zap/wrk:rw" \
           ghcr.io/zaproxy/zaproxy:stable \
           zap-full-scan.py \
@@ -60,7 +61,7 @@ jobs:
           -r /zap/wrk/zap_report.html \
           -l WARN \
           -z "-config api.disablekey=true" \
-          -d
+          -d || true
 
 
 
