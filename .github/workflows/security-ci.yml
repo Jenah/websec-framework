@@ -1,0 +1,49 @@
+name: Security CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  build-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: docker build -t websec-app:latest .
+
+      - name: Run container (port 8081)
+        run: |
+          docker run -d --name websec-test -p 8081:8081 websec-app:latest
+          for i in {1..20}; do
+            if curl -sSf http://localhost:8081 >/dev/null 2>&1; then
+              echo "server up"; break
+            fi
+            echo "waiting..."
+            sleep 2
+          done
+
+      - name: Install Trivy
+        run: |
+          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh
+
+      - name: Trivy image scan (output json)
+        run: trivy image --format json --output trivy-report.json --severity HIGH,CRITICAL websec-app:latest || true
+
+      - name: Run Nikto DAST
+        run: nikto -h http://localhost:8081 -o nikto-report.txt || true
+
+      - name: Upload scan artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: scan-artifacts
+          path: trivy-report.json,nikto-report.txt
+
+      - name: Run remediation gate (fail if criticals)
+        run: python3 scripts/remediation_gate.py
