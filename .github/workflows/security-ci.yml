@@ -35,7 +35,12 @@ jobs:
       # 5️⃣ Install Trivy
       - name: Install Trivy
         run: |
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh
+          sudo apt-get update -y
+          sudo apt-get install -y wget
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+          echo deb https://aquasecurity.github.io/trivy-repo/deb stable main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update -y
+          sudo apt-get install -y trivy
 
       # 6️⃣ Trivy image scan
       - name: Trivy image scan (JSON)
@@ -61,6 +66,11 @@ jobs:
           -l WARN \
           -z "-config api.disablekey=true" \
           -d || true
+
+      - name: Install Nikto
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y nikto
 
 
       - name: Nikto DAST scan
