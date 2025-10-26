@@ -35,12 +35,24 @@ jobs:
       # 5️⃣ Install Trivy
       - name: Install Trivy
         run: |
+          # Remove the broken Trivy repo
+          sudo rm -f /etc/apt/sources.list.d/trivy.list
+
+          # Install prerequisites
           sudo apt-get update -y
-          sudo apt-get install -y wget
-          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
-          echo deb https://aquasecurity.github.io/trivy-repo/deb stable main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+          sudo apt-get install -y wget gnupg
+
+          # Add the correct repo and key (note: "generic" not "stable")
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | \
+            gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+
+          echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | \
+            sudo tee /etc/apt/sources.list.d/trivy.list
+
+          # Update and install Trivy
           sudo apt-get update -y
           sudo apt-get install -y trivy
+
 
       # 6️⃣ Trivy image scan
       - name: Trivy image scan (JSON)
