@@ -63,6 +63,10 @@ jobs:
           -d || true
 
 
+      - name: Nikto DAST scan
+        run: nikto -h http://localhost:8085 -o nikto-report.html || true
+
+
 
 
 
@@ -74,6 +78,7 @@ jobs:
           path: |
             trivy-report.json
             zap_reports/zap_report.html
+            nikto-report.html
 
       # 9️⃣ Run remediation gate (fail if criticals)
       - name: Run remediation gate
