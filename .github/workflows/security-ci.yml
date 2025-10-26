@@ -58,6 +58,18 @@ jobs:
       - name: Trivy image scan (JSON)
         run: |
           trivy image --format json --output trivy-report.json --severity HIGH,CRITICAL websec-app:latest || true
+      - name: Trivy image scan (HTML)
+        run: |
+          # Download the HTML template
+          curl -fsSL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/html.tpl -o html.tpl
+
+          # Scan the image and output HTML
+          trivy image \
+          --severity HIGH,CRITICAL \
+          --format template \
+          --template "@html.tpl" \
+          --output trivy-report.html \
+          websec-app:latest || true
 
 
       - name: Prepare ZAP reports directory
@@ -99,6 +111,7 @@ jobs:
           name: scan-artifacts
           path: |
             trivy-report.json
+            trivy-report.html
             zap_reports/zap_report.html
             nikto-report.html
 
